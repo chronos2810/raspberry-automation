@@ -14,7 +14,7 @@ services:
       TZ: 'America/Argentina/Buenos_Aires'
       WEBPASSWORD: ${WEBPASSWORD}
       IPv6: 'false'
-      PIHOLE_DNS_: '172.20.0.5#5335,172.20.0.5#5335'
+      PIHOLE_DNS_: '172.20.0.5#5335;172.20.0.5#5335'
     env_file:
       - '.env'
     volumes:
