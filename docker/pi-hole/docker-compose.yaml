@@ -14,18 +14,18 @@ services:
       TZ: 'America/Argentina/Buenos_Aires'
       WEBPASSWORD: ${WEBPASSWORD}
       IPv6: 'false'
-      PIHOLE_DNS_: '127.0.0.1#5335,127.0.0.1#5335'
+      PIHOLE_DNS_: '172.20.0.5#5335,172.20.0.5#5335'
     env_file:
       - '.env'
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
-    dns:
-      - 127.0.0.1
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
-    network_mode: host
+    networks:
+      containers:
+        ipv4_address: 172.20.0.7
 
   unbound:
     image: klutchell/unbound
@@ -35,6 +35,9 @@ services:
     volumes:
       - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
     restart: unless-stopped
+    networks:
+      containers:
+        ipv4_address: 172.20.0.5
 
 networks:
   containers:
