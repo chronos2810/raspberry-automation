@@ -3,6 +3,7 @@
 set -x
 
 sudo apt install ansible cowsay -y
+sudo apt autoremove -y
 
 mkdir -p ~/.ansible/roles
 ln -s ~/raspberry-automation/rpi-bootstrap ~/.ansible/roles/rpi-bootstrap

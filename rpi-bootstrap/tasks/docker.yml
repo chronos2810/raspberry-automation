@@ -62,8 +62,3 @@
   ansible.builtin.file:
     path: /tmp/get-docker.sh
     state: absent
-
-- name: Run Hello World container
-  docker_container:
-    name: hello-world
-    image: hello-world
