@@ -20,5 +20,9 @@ cd raspberry-automation
 rpi-bootstrap/run.sh
 
 # Change the password in the .env files inside each folder previous to run the scripts
+vim docker/pi-hole/.env
+vim docker/samba/.env
+
+# Docker compose up
 docker/run-docker-compose.sh
 ```
