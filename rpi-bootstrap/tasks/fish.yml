@@ -9,10 +9,8 @@
 
 - name: Create a directory if it does not exist
   ansible.builtin.file:
-    path: ~/{{item.0}}/{{item.1}}
+    path: ~/.config/fish
     state: directory
-  with_nested:
-    - ['.config', 'fish']
 
 - name: Copy config.fish
   copy:
