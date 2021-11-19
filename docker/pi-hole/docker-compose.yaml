@@ -34,7 +34,7 @@ services:
     ports:
       - '5335:5335/udp'
     volumes:
-      - '/home/pi/docker/pi-hole/etc/unbound/:/etc/unbound/'
+      - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
     restart: unless-stopped
     networks:
       containers:
