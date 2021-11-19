@@ -1,0 +1,36 @@
+---
+# vars file for roles/rpi-bootstrap
+hostname: raspbian-01
+
+keyboard: "pc105"
+keyboard_layout: "us"
+keyboard_variant: "altgr-intl"
+keyboard_options: "nodeadkeys"
+
+timezone: "America/Argentina/Buenos_Aires"
+
+locale: "en_US.UTF-8"
+locale_options:
+# Disable Default (GB) Locale
+- regexp: '^ ?en_GB.UTF-8 UTF-8'
+  line: '# en_GB.UTF-8 UTF-8'
+# Enable US Locale
+- regexp: '^# ?en_US.UTF-8 UTF-8'
+  line: 'en_US.UTF-8 UTF-8'
+
+apt:
+  - git
+  - byobu
+  - curl
+  - tree
+  - silversearcher-ag
+  - neofetch
+  - vim
+  - apt-transport-https
+  - ca-certificates
+  - gnupg2
+  - software-properties-common
+  - fail2ban
+  - ntfs-3g
+  - fonts-hack-ttf
+  - xpra

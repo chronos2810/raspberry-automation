@@ -1,0 +1,17 @@
+---
+# Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Upgrade apt packages
+  become: yes
+  apt:
+    upgrade: dist
+
+- name: Install packages Raspbian (with dependencies)
+  apt:
+    name: "{{ apt }}"
+    state: latest
+    update_cache: yes
+  become: yes

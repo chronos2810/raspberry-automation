@@ -1,0 +1,10 @@
+---
+# handlers file for roles/rpi-bootstrap
+- name: reboot raspberry pi
+  listen: "reboot required"
+  become: yes
+  reboot:
+
+- name: handler
+  command: echo "triggered handler"
+  listen: "trigger handler"

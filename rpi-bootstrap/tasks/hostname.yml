@@ -1,0 +1,19 @@
+---
+# Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
+- name: Check hostname
+  command: hostname
+  changed_when: false
+  register: current_hostname
+
+- name: Set hostname
+  become: yes
+  command: hostnamectl set-hostname "{{ hostname }}"
+  when: current_hostname.stdout != hostname
+
+- name: Set hostname in /etc/hosts
+  become: yes
+  lineinfile:
+    path: /etc/hosts
+    regexp: '127.0.1.1.*raspberrypi'
+    line: "127.0.1.1\t{{ hostname }}"
+  when: current_hostname.stdout != hostname

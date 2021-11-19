@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  samba:
+    image: dperson/samba
+    restart: always
+    command: '-p -u "schrodinger;${SMB_PASSWORD}" -s "Media (RW);/media;yes;no;no;schrodinger"'
+    env_file:
+      - '.env'
+    stdin_open: true
+    tty: true
+    ports:
+      - 445:445
+    volumes:
+      - /usr/share/zoneinfo/America/Argentina/Buenos_Aires:/etc/localtime
+      - /home/pi/media:/media

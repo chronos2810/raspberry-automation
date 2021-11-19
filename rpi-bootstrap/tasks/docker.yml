@@ -1,0 +1,69 @@
+---
+# Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
+- name: Check if Docker is already present.
+  command: which docker
+  failed_when: false
+  changed_when: false
+  check_mode: false
+  register: docker_command_result
+
+- name: Download Docker install convenience script.
+  get_url:
+    url: https://get.docker.com/
+    dest: /tmp/get-docker.sh
+    mode: 0775
+  when: docker_command_result.rc == 1
+
+- name: Run Docker install convenience script.
+  command: /tmp/get-docker.sh
+  environment:
+    CHANNEL: stable
+  when: docker_command_result.rc == 1
+
+- name: Enable service docker service
+  ansible.builtin.systemd:
+    name: docker
+    enabled: yes
+
+- name: Ensure Docker is started.
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Install docker-compose
+  become: yes
+  pip:
+    name: docker-compose
+    state: latest
+    executable: pip3
+
+- name: Check if Docker Compose was installed
+  command: which docker-compose
+  failed_when: false
+  changed_when: false
+  check_mode: false
+  register: package_check
+
+- name: "Print last execution results"
+  debug:
+    msg: "Docker Compose is installed"
+  when: package_check is succeeded
+
+- name: Ensure docker users are added to the docker group
+  become: yes
+  user:
+    name: "{{ ansible_user }}"
+    groups:
+      - docker
+    append: true
+
+- name: Remove installation script
+  ansible.builtin.file:
+    path: /tmp/get-docker.sh
+    state: absent
+
+- name: Run Hello World container
+  docker_container:
+    name: hello-world
+    image: hello-world

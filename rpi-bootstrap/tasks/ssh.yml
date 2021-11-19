@@ -1,0 +1,12 @@
+---
+# Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
+- name: Enable ssh service
+  ansible.builtin.systemd:
+    name: sshd
+    enabled: yes
+
+- name: Ensure ssh is started.
+  service:
+    name: sshd
+    state: started
+    enabled: true

@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  samba:
+    image: trnape/rpi-samba
+    command: '-u "schrodinger;${SMB_PASSWORD}" -s "Media (RW);/media;rw;schrodinger"'
+    env_file: 
+      - '.env'
+    ports:
+      - 445:445
+    volumes:
+      - /usr/share/zoneinfo/America/Argentina/Buenos_Aires:/etc/localtime
+      - /home/pi/media:/media
+    restart: always
