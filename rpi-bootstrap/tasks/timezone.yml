@@ -7,5 +7,5 @@
 
 - name: Set timezone
   become: yes
-  command: "sudo timedatectl set-timezone {{ timezone }}"
+  command: "timedatectl set-timezone {{ timezone }}"
   when: current_timezone.stdout != timezone
