@@ -4,6 +4,8 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:master-armhf
+    links:
+      - unbound
     ports:
       - '53:53/tcp'
       - '53:53/udp'
@@ -16,7 +18,7 @@ services:
       - PGID: 1000
       - WEBPASSWORD: ${WEBPASSWORD}
       - IPv6: 'false'
-      - PIHOLE_DNS_: '172.20.0.5#5335;172.20.0.5#5335'
+      - PIHOLE_DNS_: '10.0.0.2#5335;10.0.0.2#5335'
     env_file:
       - '.env'
     volumes:
@@ -29,11 +31,12 @@ services:
       - NET_ADMIN
     restart: unless-stopped
     networks:
-      containers:
-        ipv4_address: 172.20.0.7
+      pihole_net:
+        ipv4_address: 10.0.0.3
 
   unbound:
-    image: klutchell/unbound
+    container_name: unbound
+    image: klutchell/unbound::armv7hf
     ports:
       - '5335:5335/tcp'
       - '5335:5335/udp'
@@ -45,11 +48,12 @@ services:
       - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
     restart: unless-stopped
     networks:
-      containers:
-        ipv4_address: 172.20.0.5
+      pihole_net:
+        ipv4_address: 10.0.0.2
 
 networks:
-  containers:
+  pihole_net:
+    driver: bridge
     ipam:
       config:
-        - subnet: 172.20.0.0/24
+        - subnet: 10.0.0.0/29
