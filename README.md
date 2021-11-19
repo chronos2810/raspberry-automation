@@ -15,6 +15,10 @@ git clone https://github.com/chronos2810/raspberry-automation.git
 
 # Run the scripts
 cd raspberry-automation
+
+# Pi bootstrap
 rpi-bootstrap/run.sh
+
+# Change the password in the .env files inside each folder previous to run the scripts
 docker/run-docker-compose.sh
 ```
