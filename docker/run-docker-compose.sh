@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -x
-cd ~/docker/pi-hole
+cd ~/raspberry-automation/docker/pi-hole
 docker-compose up -d
 
-cd ~/docker/samba
+cd ~/raspberry-automation/docker/samba
 docker-compose up -d
