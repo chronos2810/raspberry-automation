@@ -64,7 +64,7 @@ services:
   dhcphelper:
     container_name: dhcp-helper
     build: ./dhcp-helper
-    command: -s 10.0.0.3
+    command: -d -s 10.0.0.3
     network_mode: 'host'
     cap_add:
       - NET_ADMIN
