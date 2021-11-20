@@ -41,9 +41,8 @@ services:
       - '5335:5335/tcp'
       - '5335:5335/udp'
     environment:
-      TZ: 'America/Argentina/Buenos_Aires'
-      PUID: 1000
-      PGID: 1000
+      PUID: 0
+      PGID: 0
     volumes:
       - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
     restart: unless-stopped
