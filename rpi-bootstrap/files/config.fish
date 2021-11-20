@@ -1,4 +1,9 @@
-echo; neofetch
+
+# Fish usage: https://fishshell.com/docs/current/cmds/bind.html
+
+#############
+# !! AND !$ #
+#############
 
 function bind_bang
     switch (commandline -t)[-1]
@@ -23,3 +28,20 @@ function fish_user_key_bindings
     bind ! bind_bang
     bind '$' bind_dollar
 end
+
+########
+# HSTR #
+########
+
+export HSTR_CONFIG=hicolor       # get more colors
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HSTR_CONFIG=hide-help
+export HSTR_CONFIG=prompt-bottom
+
+bind \cr 'hstr'
+
+###########
+# STARTUP #
+###########
+
+echo; neofetch

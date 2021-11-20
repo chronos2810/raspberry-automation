@@ -1,9 +1,15 @@
 
-- Container Image Documentation: https://hub.docker.com/r/pihole/pihole
+# Recursive Ad Blocker + DNS Server + DHCP: Pi- Hole / Unbound / DHCP Relay
 
-https://www.youtube.com/watch?v=R29YBmYxXAk
-    INSTALA tu VPN personal SIN ADS! con Wireguard + PiHole
+## Pi-Hole Container Image Documentation
 
-PIHOLE_DNS_: '10.0.0.2#5053;1.1.1.1'
+- [https://hub.docker.com/r/pihole/pihole](https://hub.docker.com/r/pihole/pihole)
 
-- Unbound: https://hub.docker.com/r/klutchell/unbound
+## Unbound Container Image Documentation
+
+- [https://hub.docker.com/r/klutchell/unbound](https://hub.docker.com/r/klutchell/unbound)
+
+## DHCP-Relay Documentation
+
+- [https://docs.pi-hole.net/docker/dhcp/](https://docs.pi-hole.net/docker/dhcp/)
+- [https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038)

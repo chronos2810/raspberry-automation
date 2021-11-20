@@ -34,3 +34,4 @@ apt:
   - ntfs-3g
   - fonts-hack-ttf
   - xpra
+  - hstr
