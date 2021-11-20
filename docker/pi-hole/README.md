@@ -1,10 +1,15 @@
 
-# Recursive Ad Blocker DNS Server: Pi- Hole + Unbound
+# Recursive Ad Blocker + DNS Server + DHCP: Pi- Hole / Unbound / DHCP Relay
 
-- Pi-Hole Container Image Documentation: [https://hub.docker.com/r/pihole/pihole](https://hub.docker.com/r/pihole/pihole)
+## Pi-Hole Container Image Documentation
 
-- Unbound Container Image Documentation: [https://hub.docker.com/r/klutchell/unbound](https://hub.docker.com/r/klutchell/unbound)
+- [https://hub.docker.com/r/pihole/pihole](https://hub.docker.com/r/pihole/pihole)
 
-- Start: 192.168.0.2
-- End: 192.168.0.254
-- Lease Time (second): 3600
+## Unbound Container Image Documentation
+
+- [https://hub.docker.com/r/klutchell/unbound](https://hub.docker.com/r/klutchell/unbound)
+
+## DHCP-Relay Documentation
+
+- [https://docs.pi-hole.net/docker/dhcp/](https://docs.pi-hole.net/docker/dhcp/)
+- [https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038)

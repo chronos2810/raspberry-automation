@@ -25,8 +25,8 @@ services:
       IPv6: 'false'
       # DHCP
       DHCP_ACTIVE: 'true'
-      DHCP_START: 172.16.0.2
-      DHCP_END: 172.16.0.254
+      DHCP_START: 192.168.0.2
+      DHCP_END: 192.168.0.254
       DHCP_ROUTER: 192.168.0.1
       DHCP_LEASETIME: 1
       PIHOLE_DOMAIN: pi-hole
@@ -56,8 +56,6 @@ services:
     ports:
       - '5053:5053/tcp'
       - '5053:5053/udp'
-    volumes:
-      - './var/log/unbound/:/var/log/unbound/'
     restart: unless-stopped
     networks:
       pihole_net:
@@ -66,7 +64,7 @@ services:
   dhcphelper:
     container_name: dhcp-helper
     build: ./dhcp-helper
-    command: -d -s 10.0.0.3
+    command: -s 10.0.0.3
     network_mode: 'host'
     cap_add:
       - NET_ADMIN
