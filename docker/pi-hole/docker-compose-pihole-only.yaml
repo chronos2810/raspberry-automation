@@ -14,7 +14,6 @@ services:
       - '443:443/tcp'
     environment:
       ServerIP: ${SERVER_IP}
-      PIHOLE_DNS_: '10.0.0.2#5053;10.0.0.2#5053'
       DNSMASQ_LISTENING: 'all'
       TZ: 'America/Argentina/Buenos_Aires'
       PUID: 1000
@@ -35,17 +34,6 @@ services:
     networks:
       pihole_net:
         ipv4_address: 10.0.0.3
-
-  unbound:
-    container_name: unbound
-    image: klutchell/unbound:latest
-    ports:
-      - '5053:5053/tcp'
-      - '5053:5053/udp'
-    restart: unless-stopped
-    networks:
-      pihole_net:
-        ipv4_address: 10.0.0.2
 
 networks:
   pihole_net:

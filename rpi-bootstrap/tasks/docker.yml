@@ -24,12 +24,14 @@
   ansible.builtin.systemd:
     name: docker
     enabled: yes
+  when: docker_command_result.rc == 1
 
 - name: Ensure Docker is started.
   service:
     name: docker
     state: started
     enabled: true
+  when: docker_command_result.rc == 1
 
 - name: Install docker-compose
   become: yes
@@ -57,13 +59,10 @@
     groups:
       - docker
     append: true
+  when: docker_command_result.rc == 1
 
 - name: Remove installation script
   ansible.builtin.file:
     path: /tmp/get-docker.sh
     state: absent
-
-- name: Run Hello World container
-  docker_container:
-    name: hello-world
-    image: hello-world
+  when: docker_command_result.rc == 1

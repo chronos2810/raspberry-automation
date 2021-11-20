@@ -7,16 +7,5 @@
 
 - name: Set timezone
   become: yes
-  copy: 
-    content: "{{ timezone }}"
-    dest: /etc/timezone
-    owner: root
-    group: root
-    mode: 0644
-    backup: yes
-  when: current_timezone.stdout != timezone
-
-- name: Reconfigure timezone data
-  become: yes
-  command: dpkg-reconfigure -f noninteractive tzdata
+  command: "timedatectl set-timezone {{ timezone }}"
   when: current_timezone.stdout != timezone

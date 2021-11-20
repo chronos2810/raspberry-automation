@@ -10,7 +10,7 @@ passwd
 
 # Clone the repo
 cd ~
-sudo apt update && sudo apt install git
+sudo apt update
 git clone https://github.com/chronos2810/raspberry-automation.git
 
 # Run the scripts
