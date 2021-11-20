@@ -1,13 +1,6 @@
 
 # Fish usage: https://fishshell.com/docs/current/cmds/bind.html
 
-############
-# VIM MODE #
-############
-
-set -g fish_key_bindings fish_vi_key_bindings
-bind -M insert \cc kill-whole-line repaint
-
 #############
 # !! AND !$ #
 #############
@@ -40,9 +33,11 @@ end
 # HSTR #
 ########
 
-alias hh=hstr                    # hh to be alias for hstr
 export HSTR_CONFIG=hicolor       # get more colors
 export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HSTR_CONFIG=hide-help
+export HSTR_CONFIG=prompt-bottom
+
 bind \cr 'hstr'
 
 ###########
