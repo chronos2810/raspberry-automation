@@ -4,18 +4,13 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    ports:
-      - '53:53/tcp'
-      - '53:53/udp'
-      - '67:67/udp'
-      - '80:80/tcp'
-      - '443:443/tcp'
     environment:
       # OS
       TZ: 'America/Argentina/Buenos_Aires'
       PUID: 1000
       PGID: 1000
       # HTTP
+      VIRTUAL_HOST: pi.hole
       ServerIP: ${SERVER_IP}
       WEBPASSWORD: ${WEB_PASSWORD}
       WEBTHEME: 'default-dark'
@@ -42,6 +37,9 @@ services:
       - 1.1.1.1
     cap_add:
       - NET_ADMIN
+    network_mode: host
+    depends_on:
+      - unbound
     restart: unless-stopped
     networks:
       pihole_net:
