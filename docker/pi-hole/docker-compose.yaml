@@ -14,7 +14,7 @@ services:
       - '443:443/tcp'
     environment:
       ServerIP: 192.168.0.37
-#      PIHOLE_DNS_: '10.0.0.2#5335;10.0.0.2#5335'
+      PIHOLE_DNS_: '10.0.0.2#5335;10.0.0.2#5335'
       DNSMASQ_LISTENING: 'all'
       TZ: 'America/Argentina/Buenos_Aires'
       PUID: 1000
