@@ -1,4 +1,7 @@
-echo; neofetch
+
+#############
+# !! AND !$ #
+#############
 
 function bind_bang
     switch (commandline -t)[-1]
@@ -23,3 +26,18 @@ function fish_user_key_bindings
     bind ! bind_bang
     bind '$' bind_dollar
 end
+
+########
+# HSTR #
+########
+
+alias hh=hstr                    # hh to be alias for hstr
+export HSTR_CONFIG=hicolor       # get more colors
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+bind \cr 'hstr'
+
+###########
+# STARTUP #
+###########
+
+echo; neofetch
