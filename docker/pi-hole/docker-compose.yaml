@@ -14,7 +14,7 @@ services:
       - '443:443/tcp'
     environment:
       ServerIP: ${SERVER_IP}
-      PIHOLE_DNS_: '10.0.0.2#5335;10.0.0.2#5335'
+      PIHOLE_DNS_: '127.0.0.1#5335;127.0.0.1#5335'
       DNSMASQ_LISTENING: 'all'
       TZ: 'America/Argentina/Buenos_Aires'
       PUID: 1000
@@ -42,8 +42,8 @@ services:
     ports:
       - '5335:5335/tcp'
       - '5335:5335/udp'
-    volumes:
-      - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
+    # volumes:
+    #   - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
     restart: unless-stopped
     networks:
       pihole_net:
