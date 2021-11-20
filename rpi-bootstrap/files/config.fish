@@ -1,4 +1,13 @@
 
+# Fish usage: https://fishshell.com/docs/current/cmds/bind.html
+
+############
+# VIM MODE #
+############
+
+set -g fish_key_bindings fish_vi_key_bindings
+bind -M insert \cc kill-whole-line repaint
+
 #############
 # !! AND !$ #
 #############
