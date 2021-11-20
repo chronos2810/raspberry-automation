@@ -36,7 +36,7 @@ services:
 
   unbound:
     container_name: unbound
-    image: klutchell/unbound::armv7hf
+    image: klutchell/unbound:armv7hf
     ports:
       - '5335:5335/tcp'
       - '5335:5335/udp'
