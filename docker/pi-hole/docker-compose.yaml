@@ -14,7 +14,6 @@ services:
       - '443:443/tcp'
     environment:
       ServerIP: ${SERVER_IP}
-#      PIHOLE_DNS_: '127.0.0.1#5053;127.0.0.1#5053'
       PIHOLE_DNS_: '10.0.0.2#5053;10.0.0.2#5053'
       DNSMASQ_LISTENING: 'all'
       TZ: 'America/Argentina/Buenos_Aires'
@@ -45,8 +44,8 @@ services:
     ports:
       - '5053:5053/tcp'
       - '5053:5053/udp'
-    # volumes:
-    #   - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
+    volumes:
+      - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
     healthcheck:
       test: ["CMD-SHELL", "drill -Qp 5053 nlnetlabs.nl @127.0.0.1"]
       interval: 60s
