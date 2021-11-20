@@ -62,6 +62,7 @@ services:
         ipv4_address: 10.0.0.2
 
   dhcphelper:
+    container_name: dhcp-helper
     build: ./dhcp-helper
     command: -s 10.0.0.3
     network_mode: 'host'
