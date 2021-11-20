@@ -3,7 +3,7 @@ version: '3.7'
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole
+    image: pihole/pihole:latest
     links:
       - unbound
     ports:
@@ -14,7 +14,7 @@ services:
       - '443:443/tcp'
     environment:
       ServerIP: 192.168.0.37
-      PIHOLE_DNS_: '10.0.0.2#5335;10.0.0.2#5335'
+#      PIHOLE_DNS_: '10.0.0.2#5335;10.0.0.2#5335'
       DNSMASQ_LISTENING: 'all'
       TZ: 'America/Argentina/Buenos_Aires'
       PUID: 1000
@@ -38,13 +38,10 @@ services:
 
   unbound:
     container_name: unbound
-    image: klutchell/unbound
+    image: klutchell/unbound:latest
     ports:
       - '5335:5335/tcp'
       - '5335:5335/udp'
-    environment:
-      PUID: 0
-      PGID: 0
     volumes:
       - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
     restart: unless-stopped
