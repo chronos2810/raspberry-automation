@@ -47,6 +47,12 @@ services:
       - '5053:5053/udp'
     # volumes:
     #   - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
+    healthcheck:
+      test: drill -Qp 5053 nlnetlabs.nl @127.0.0.1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     restart: unless-stopped
     networks:
       pihole_net:
