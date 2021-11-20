@@ -41,7 +41,7 @@ services:
     container_name: unbound
     image: klutchell/unbound:latest
     command:
-      - '--health-cmd "drill -Qp 5053 nlnetlabs.nl @127.0.0.1"'
+      - --health-cmd "drill -Qp 5053 nlnetlabs.nl @127.0.0.1"
     ports:
       - '5053:5053/tcp'
       - '5053:5053/udp'
