@@ -56,6 +56,8 @@ services:
     ports:
       - '5053:5053/tcp'
       - '5053:5053/udp'
+    volumes:
+      - './var/log/unbound/:/var/log/unbound/'
     restart: unless-stopped
     networks:
       pihole_net:
