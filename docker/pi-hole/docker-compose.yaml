@@ -14,12 +14,13 @@ services:
       - '443:443/tcp'
     environment:
       ServerIP: ${SERVER_IP}
-      PIHOLE_DNS_: '127.0.0.1#5335;127.0.0.1#5335'
+      PIHOLE_DNS_: '127.0.0.1#5053;127.0.0.1#5053'
+#      PIHOLE_DNS_: '10.0.0.2#5053;10.0.0.2#5053'
       DNSMASQ_LISTENING: 'all'
       TZ: 'America/Argentina/Buenos_Aires'
       PUID: 1000
       PGID: 1000
-      WEBPASSWORD: ${WEBPASSWORD}
+      WEBPASSWORD: ${WEB_PASSWORD}
       IPv6: 'false'
     env_file:
       - '.env'
@@ -40,10 +41,10 @@ services:
     container_name: unbound
     image: klutchell/unbound:latest
     ports:
-      - '5335:5335/tcp'
-      - '5335:5335/udp'
-    # volumes:
-    #   - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
+      - '53:5053/tcp'
+      - '53:5053/udp'
+    volumes:
+      - '/home/pi/raspberry-automation/docker/pi-hole/etc/unbound/:/etc/unbound/'
     restart: unless-stopped
     networks:
       pihole_net:
