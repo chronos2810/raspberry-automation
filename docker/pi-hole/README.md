@@ -1,9 +1,10 @@
 
-- Container Image Documentation: https://hub.docker.com/r/pihole/pihole
+# Recursive Ad Blocker DNS Server: Pi- Hole + Unbound
 
-https://www.youtube.com/watch?v=R29YBmYxXAk
-    INSTALA tu VPN personal SIN ADS! con Wireguard + PiHole
+- Pi-Hole Container Image Documentation: [https://hub.docker.com/r/pihole/pihole](https://hub.docker.com/r/pihole/pihole)
 
-PIHOLE_DNS_: '10.0.0.2#5053;1.1.1.1'
+- Unbound Container Image Documentation: [https://hub.docker.com/r/klutchell/unbound](https://hub.docker.com/r/klutchell/unbound)
 
-- Unbound: https://hub.docker.com/r/klutchell/unbound
+- Start: 192.168.0.2
+- End: 192.168.0.254
+- Lease Time (second): 3600

@@ -4,8 +4,6 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    links:
-      - unbound
     ports:
       - '53:53/tcp'
       - '53:53/udp'
@@ -13,14 +11,27 @@ services:
       - '80:80/tcp'
       - '443:443/tcp'
     environment:
-      ServerIP: ${SERVER_IP}
-      PIHOLE_DNS_: '10.0.0.2#5053;10.0.0.2#5053'
-      DNSMASQ_LISTENING: 'all'
+      # OS
       TZ: 'America/Argentina/Buenos_Aires'
       PUID: 1000
       PGID: 1000
+      # HTTP
+      ServerIP: ${SERVER_IP}
       WEBPASSWORD: ${WEB_PASSWORD}
+      WEBTHEME: 'default-dark'
+      # DNS
+      PIHOLE_DNS_: '10.0.0.2#5053;10.0.0.2#5053'
+      DNSMASQ_LISTENING: 'all'
       IPv6: 'false'
+      # DHCP
+      DHCP_ACTIVE: 'true'
+      DHCP_START: 172.16.0.2
+      DHCP_END: 172.16.0.254
+      DHCP_ROUTER: 192.168.0.1
+      DHCP_LEASETIME: 1
+      PIHOLE_DOMAIN: pi-hole
+      DHCP_IPv6: 'false'
+      DHCP_rapid_commit: 'true'
     env_file:
       - '.env'
     volumes:
