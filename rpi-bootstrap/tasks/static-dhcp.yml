@@ -1,0 +1,12 @@
+---
+# Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
+- name: Copy config.fish
+  copy:
+    src: files/dhcpcd.conf
+    dest: etc/dhcpcd.conf
+    owner: root
+    group: netdev
+    mode: '0664'
+    force: yes
+    backup: yes
+  become: yes

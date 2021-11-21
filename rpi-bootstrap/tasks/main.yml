@@ -5,6 +5,7 @@
 - import_tasks: docker.yml
 - import_tasks: expand-rootfs.yml
 - import_tasks: hostname.yml
+- import_tasks: static-dhcp.yml
 - import_tasks: keyboard.yml
 - import_tasks: locale.yml
 - import_tasks: timezone.yml
