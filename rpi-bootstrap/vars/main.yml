@@ -35,3 +35,4 @@ apt:
   - fonts-hack-ttf
   - xpra
   - hstr
+  - dnsutils

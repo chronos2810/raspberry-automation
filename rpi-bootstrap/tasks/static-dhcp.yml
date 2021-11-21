@@ -1,0 +1,28 @@
+---
+# Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
+- name: Copy /etc/dhcpcd.conf
+  copy:
+    src: files/dhcpcd.conf
+    dest: /etc/dhcpcd.conf
+    owner: root
+    group: netdev
+    mode: '0664'
+    force: yes
+    backup: yes
+  become: yes
+
+- name: Copy /etc/resolv.conf
+  copy:
+    src: files/resolv.conf
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: '0644'
+    force: yes
+    backup: yes
+  notify: "reboot required"
+  become: yes
+
+- name: Immutable /etc/resolv.conf
+  command: chattr +i /etc/resolv.conf
+  become: yes
