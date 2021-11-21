@@ -22,3 +22,7 @@
     backup: yes
   notify: "reboot required"
   become: yes
+
+- name: Immutable /etc/resolv.conf
+  command: chattr +i /etc/resolv.conf
+  become: yes
