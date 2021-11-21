@@ -9,4 +9,5 @@
     mode: '0664'
     force: yes
     backup: yes
+  notify: "reboot required"
   become: yes
