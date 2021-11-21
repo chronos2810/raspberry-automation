@@ -2,12 +2,30 @@
 # Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
 - import_tasks: apt.yml
   tags: apt
+
 - import_tasks: ssh.yml
+  tags: ssh
+
 - import_tasks: docker.yml
+  tags: docker
+
 - import_tasks: expand-rootfs.yml
+  tags: expand-rootfs
+
 - import_tasks: hostname.yml
+  tags: hostname
+
 - import_tasks: static-dhcp.yml
+  tags: static-dhcp
+
 - import_tasks: keyboard.yml
+  tags: keyboard
+
 - import_tasks: locale.yml
+  tags: locale
+
 - import_tasks: timezone.yml
+  tags: timezone
+
 - import_tasks: fish.yml
+  tags: fish
