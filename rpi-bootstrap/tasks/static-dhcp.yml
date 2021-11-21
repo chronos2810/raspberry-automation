@@ -9,5 +9,16 @@
     mode: '0664'
     force: yes
     backup: yes
+  become: yes
+
+- name: Copy /etc/resolv.conf
+  copy:
+    src: files/resolv.conf
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: '0644'
+    force: yes
+    backup: yes
   notify: "reboot required"
   become: yes
