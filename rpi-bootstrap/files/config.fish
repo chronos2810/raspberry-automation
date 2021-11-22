@@ -29,17 +29,6 @@ function fish_user_key_bindings
     bind '$' bind_dollar
 end
 
-########
-# HSTR #
-########
-
-export HSTR_CONFIG=hicolor       # get more colors
-export HISTCONTROL=ignorespace   # leading space hides commands from history
-export HSTR_CONFIG=hide-help
-export HSTR_CONFIG=prompt-bottom
-
-bind \cr 'hstr'
-
 ###########
 # STARTUP #
 ###########

@@ -29,3 +29,6 @@
 
 - import_tasks: fish.yml
   tags: fish
+
+- import_tasks: fzf.yml
+  tags: fzf
