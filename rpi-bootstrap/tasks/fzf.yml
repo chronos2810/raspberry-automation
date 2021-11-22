@@ -11,7 +11,3 @@
 - name: Install script
   command: /home/pi/.fzf/install --key-bindings --no-completion --no-bash --no-zsh --all
   become: yes
-
-- name: Enable keybindings
-  ansible.builtin.debug:
-    msg: "[+] INFO: Run the command 'fzf_key_bindings' to enable the FZF keybindings."
