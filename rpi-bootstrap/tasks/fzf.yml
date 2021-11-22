@@ -9,7 +9,7 @@
   become: no
 
 - name: Install script
-  command: ~/.fzf/install
+  command: /home/pi/.fzf/install
   become: yes
 
 - name: Enable keybindings
