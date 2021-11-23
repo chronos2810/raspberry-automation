@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker
+    environment:
+      # OS
+      TZ: 'America/Argentina/Buenos_Aires'
+      PUID: 1000
+      PGID: 1000
+      # PLEX
+      PLEX_CLAIM: ${PLEX_CLAIM}
+    env_file:
+      - '.env'
+    volumes:
+      - './plex/config:/config'
+      - './plex/transcode/:/transcode'
+      - './plex/media:/data'
+    restart: unless-stopped
