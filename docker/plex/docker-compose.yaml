@@ -7,8 +7,8 @@ services:
     environment:
       # OS
       TZ: 'America/Argentina/Buenos_Aires'
-      PUID: 1000
-      PGID: 1000
+      PLEX_UID: 1000
+      PLEX_GID: 1000
       # PLEX
       PLEX_CLAIM: ${PLEX_CLAIM}
     env_file:
