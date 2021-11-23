@@ -2,19 +2,20 @@ version: '3.7'
 
 services:
   plex:
+    image: lscr.io/linuxserver/plex
     container_name: plex
-    image: plexinc/pms-docker:latest
+    network_mode: host
     environment:
       # OS
       TZ: 'America/Argentina/Buenos_Aires'
-      PLEX_UID: 1000
-      PLEX_GID: 1000
-      # PLEX
+      PUID: 1000
+      PGID: 1000
+      VERSION: docker
       PLEX_CLAIM: ${PLEX_CLAIM}
     env_file:
       - '.env'
     volumes:
       - './plex/config:/config'
-      - './plex/transcode/:/transcode'
-      - './plex/media:/data'
+      - './plex/tvseries/:/tv'
+      - './plex/movies:/movies'
     restart: unless-stopped
