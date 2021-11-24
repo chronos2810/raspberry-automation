@@ -5,11 +5,11 @@ services:
     container_name: portainer
     image: docker pull portainer/portainer-ce
     ports:
-      - 8000:8000
-      - 9443:9443
+      - '8000:8000/tcp'
+      - '9443:9443/tcp'
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - 'portainer_data:/data'
     restart: always
 
 volumes:
