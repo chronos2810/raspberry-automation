@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
   samba:
+    container_name: samba
     image: dperson/samba
     restart: always
     command: '-p -u "schrodinger;${SMB_PASSWORD}" -s "Media (RW);/media;yes;no;no;schrodinger"'
