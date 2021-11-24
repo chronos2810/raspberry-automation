@@ -3,7 +3,7 @@ version: "3.8"
 services:
   portainer:
     container_name: portainer
-    image: docker pull portainer/portainer-ce
+    image: portainer/portainer-ce
     ports:
       - '8000:8000/tcp'
       - '9443:9443/tcp'
