@@ -13,3 +13,7 @@
 
 - [https://docs.pi-hole.net/docker/dhcp/](https://docs.pi-hole.net/docker/dhcp/)
 - [https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038)
+
+# Wireguard Documentation
+
+- [https://github.com/linuxserver/docker-wireguard](https://github.com/linuxserver/docker-wireguard)
