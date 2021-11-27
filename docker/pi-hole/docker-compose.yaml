@@ -1,3 +1,4 @@
+---
 version: '3.7'
 
 services:
@@ -60,6 +61,35 @@ services:
     networks:
       pihole_net:
         ipv4_address: 10.0.0.2
+      
+  wireguard:
+    container_name: wireguard
+    image: linuxserver/wireguard
+    ports:
+      - 51820:51820/udp
+    environment:
+      # OS
+      PUID: 1000
+      PGID: 1000
+      TZ: 'America/Argentina/Buenos_Aires'
+      # VPN
+      SERVERPORT: 51820
+      PEERS: 2
+      PEERDNS: 'auto'
+      INTERNAL_SUBNET: 10.13.13.0
+    volumes:
+      - '/root/wireguard:/config'
+      - '/lib/modules:/lib/modules'
+      - '/usr/src:/usr/src'
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    restart: unless-stopped
+    networks:
+      pihole_net:
+        ipv4_address: 10.0.0.4
 
   dhcphelper:
     container_name: dhcp-helper
