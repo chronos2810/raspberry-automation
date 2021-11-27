@@ -74,9 +74,10 @@ services:
       TZ: 'America/Argentina/Buenos_Aires'
       # VPN
       SERVERPORT: 51820
-      PEERS: 1 #optional
-      PEERDNS: 'auto' #optional
-      INTERNAL_SUBNET: 10.13.13.0 #optional
+      PEERS: 2
+      #PEERDNS: 'auto'
+      PEERDNS: 10.0.0.3
+      INTERNAL_SUBNET: 10.13.13.0
     volumes:
       - '/root/wireguard:/config'
       - '/lib/modules:/lib/modules'
