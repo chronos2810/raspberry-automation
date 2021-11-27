@@ -86,8 +86,6 @@ services:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
-    dns:
-      - 10.0.0.3
     restart: unless-stopped
     networks:
       pihole_net:
