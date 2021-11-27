@@ -77,7 +77,7 @@ services:
       PEERS: 2
       PEERDNS: 'auto'
       INTERNAL_SUBNET: 10.13.13.0
-      ALLOWEDIPS: '0.0.0.0/0, ::0/0'
+      ALLOWEDIPS: 0.0.0.0/0
     volumes:
       - '/root/wireguard:/config'
       - '/lib/modules:/lib/modules'
