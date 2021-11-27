@@ -66,7 +66,7 @@ services:
     container_name: wireguard
     image: linuxserver/wireguard
     ports:
-      - '51820:51820/udp'
+      - 51820:51820/udp
     environment:
       # OS
       PUID: 1000
@@ -77,7 +77,6 @@ services:
       PEERS: 2
       PEERDNS: 'auto'
       INTERNAL_SUBNET: 10.13.13.0
-      ALLOWEDIPS: 0.0.0.0/0
     volumes:
       - '/root/wireguard:/config'
       - '/lib/modules:/lib/modules'
