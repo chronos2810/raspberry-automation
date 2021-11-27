@@ -75,8 +75,7 @@ services:
       # VPN
       SERVERPORT: 51820
       PEERS: 2
-      #PEERDNS: 'auto'
-      PEERDNS: 10.0.0.3
+      PEERDNS: 'auto'
       INTERNAL_SUBNET: 10.13.13.0
     volumes:
       - '/root/wireguard:/config'
