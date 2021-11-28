@@ -101,6 +101,23 @@ services:
       lan:
         ipv4_address: 192.168.0.87
 
+  tautulli:
+    image: lscr.io/linuxserver/tautulli
+    container_name: tautulli
+    hostname: raspbian-tautulli
+    ports:
+      - 8181:8181
+    environment:
+      # OS
+      TZ: 'America/Argentina/Buenos_Aires'
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - './tautulli:/config'
+    depends_on:
+      - plex
+    restart: unless-stopped
+
 networks:
   lan:
     driver: macvlan
