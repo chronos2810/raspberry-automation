@@ -92,9 +92,10 @@ services:
       - '${STORAGE}/tvseries:/tv'
       - '${STORAGE}/movies:/movies'
     restart: unless-stopped
+    hostname: plex
     networks: 
       lan:
-        ipv4_address: 192.168.0.3
+        ipv4_address: 192.168.0.87
 
 networks:
   lan:
