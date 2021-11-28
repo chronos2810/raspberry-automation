@@ -17,3 +17,7 @@
 - Radarr
 
 [https://hub.docker.com/r/linuxserver/radarr](https://hub.docker.com/r/linuxserver/radarr)
+
+- Tautulli
+
+[https://hub.docker.com/r/linuxserver/tautulli](https://hub.docker.com/r/linuxserver/tautulli)
