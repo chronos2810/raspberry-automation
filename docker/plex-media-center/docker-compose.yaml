@@ -1,0 +1,112 @@
+version: '3.7'
+
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission
+    container_name: transmission
+    hostname: raspbian-transmission
+    ports:
+      - 9091:9091/tcp
+      - 51413:51413/tcp
+      - 51413:51413/udp
+    environment:
+      # OS
+      TZ: 'America/Argentina/Buenos_Aires'
+      PUID: 1000
+      PGID: 1000
+      # APP
+      TRANSMISSION_WEB_HOME: /combustion-release/
+    volumes:
+      - './transmission:/config'
+      - '${STORAGE}/torrents:/downloads'
+    restart: unless-stopped
+
+  jackett:
+    image: lscr.io/linuxserver/jackett
+    container_name: jackett
+    hostname: raspbian-jackett
+    environment:
+      # OS
+      TZ: 'America/Argentina/Buenos_Aires'
+      PUID: 1000
+      PGID: 1000
+      # APP
+      AUTO_UPDATE: 'true'
+    volumes:
+      - './jackett:/config'
+      - '${STORAGE}/torrents:/downloads'
+    ports:
+      - 9117:9117/tcp
+    depends_on:
+      - transmission
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr
+    container_name: sonarr
+    hostname: raspbian-sonarr
+    ports:
+      - 8989:8989/tcp
+    environment:
+      # OS
+      TZ: 'America/Argentina/Buenos_Aires'
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - './sonarr:/config'
+      - '${STORAGE}/tvseries:/tv'
+      - '${STORAGE}/torrents:/downloads'
+    depends_on:
+      - jackett
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr
+    container_name: radarr
+    hostname: raspbian-radarr
+    ports:
+      - 7878:7878/tcp
+    environment:
+      # OS
+      TZ: 'America/Argentina/Buenos_Aires'
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - './radarr:/config'
+      - '${STORAGE}/movies:/movies'
+      - '${STORAGE}/torrents:/downloads'
+    depends_on:
+      - jackett
+    restart: unless-stopped
+
+  plex:
+    image: lscr.io/linuxserver/plex
+    container_name: plex
+    hostname: raspbian-plex
+    environment:
+      # OS
+      TZ: 'America/Argentina/Buenos_Aires'
+      PUID: 1000
+      PGID: 1000
+      VERSION: docker
+      PLEX_CLAIM: ${PLEX_CLAIM}
+    env_file:
+      - '.env'
+    volumes:
+      - './plex/config:/config'
+      - '${STORAGE}/tvseries:/tv'
+      - '${STORAGE}/movies:/movies'
+    restart: unless-stopped
+    networks: 
+      lan:
+        ipv4_address: 192.168.0.87
+
+networks:
+  lan:
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: '192.168.0.0/24'
+          gateway: '192.168.0.1'
