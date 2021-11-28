@@ -53,8 +53,6 @@ services:
       - './sonarr:/config'
       - '${STORAGE}/tvseries:/tv'
       - '${STORAGE}/torrents:/downloads'
-    links:
-      - transmission
     depends_on:
       - jackett
     restart: unless-stopped
