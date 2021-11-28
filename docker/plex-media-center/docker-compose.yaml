@@ -114,6 +114,7 @@ services:
       PGID: 1000
     volumes:
       - './tautulli:/config'
+      - './tautulli/logs:/logs'
     depends_on:
       - plex
     restart: unless-stopped
