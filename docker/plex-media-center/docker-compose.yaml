@@ -4,20 +4,20 @@ services:
   transmission:
     image: lscr.io/linuxserver/transmission
     container_name: transmission
+    ports:
+      - 9091:9091/tcp
+      - 51413:51413/tcp
+      - 51413:51413/udp
     environment:
       # OS
       TZ: 'America/Argentina/Buenos_Aires'
       PUID: 1000
       PGID: 1000
       # APP
-      TRANSMISSION_WEB_HOME: /combustion-release/ #optional
+      TRANSMISSION_WEB_HOME: /combustion-release/
     volumes:
       - './transmission:/config'
       - '${STORAGE}/torrents:/downloads'
-    ports:
-      - 9091:9091/tcp
-      - 51413:51413/tcp
-      - 51413:51413/udp
     restart: unless-stopped
 
   jackett:
@@ -29,12 +29,14 @@ services:
       PUID: 1000
       PGID: 1000
       # APP
-      AUTO_UPDATE: true #optional
+      AUTO_UPDATE: true
     volumes:
       - './jackett:/config'
       - '${STORAGE}/torrents:/downloads'
     ports:
       - 9117:9117/tcp
+    depends_on:
+      - transmission
     restart: unless-stopped
 
   sonarr:
@@ -51,6 +53,8 @@ services:
       - './sonarr:/config'
       - '${STORAGE}/tvseries:/tv'
       - '${STORAGE}/torrents:/downloads'
+    depends_on:
+      - jackett
     restart: unless-stopped
 
   radarr:
@@ -67,6 +71,8 @@ services:
       - './radarr:/config'
       - '${STORAGE}/movies:/movies'
       - '${STORAGE}/torrents:/downloads'
+    depends_on:
+      - jackett
     restart: unless-stopped
 
   # plex:
@@ -87,6 +93,9 @@ services:
   #     - './plex/movies:/movies'
   #   depends_on:
   #     - transmission
+  #     - jackett
+  #     - sonarr
+  #     - radarr
   #   restart: unless-stopped
   #   networks: 
   #     lan:
