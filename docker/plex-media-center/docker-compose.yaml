@@ -89,8 +89,8 @@ services:
       - '.env'
     volumes:
       - './plex/config:/config'
-      - './plex/tvseries/:/tv'
-      - './plex/movies:/movies'
+      - '${STORAGE}/tvseries:/tv'
+      - '${STORAGE}/movies:/movies'
     depends_on:
       - transmission
       - jackett
