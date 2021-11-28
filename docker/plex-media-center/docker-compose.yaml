@@ -20,28 +20,28 @@ services:
       - 51413:51413/udp
     restart: unless-stopped
 
-  plex:
-    image: lscr.io/linuxserver/plex
-    container_name: plex
-    environment:
-      # OS
-      TZ: 'America/Argentina/Buenos_Aires'
-      PUID: 1000
-      PGID: 1000
-      VERSION: docker
-      PLEX_CLAIM: ${PLEX_CLAIM}
-    env_file:
-      - '.env'
-    volumes:
-      - './plex/config:/config'
-      - './plex/tvseries/:/tv'
-      - './plex/movies:/movies'
-    depends_on:
-      - transmission
-    restart: unless-stopped
-    networks: 
-      lan:
-        ipv4_address: 192.168.0.3
+  # plex:
+  #   image: lscr.io/linuxserver/plex
+  #   container_name: plex
+  #   environment:
+  #     # OS
+  #     TZ: 'America/Argentina/Buenos_Aires'
+  #     PUID: 1000
+  #     PGID: 1000
+  #     VERSION: docker
+  #     PLEX_CLAIM: ${PLEX_CLAIM}
+  #   env_file:
+  #     - '.env'
+  #   volumes:
+  #     - './plex/config:/config'
+  #     - './plex/tvseries/:/tv'
+  #     - './plex/movies:/movies'
+  #   depends_on:
+  #     - transmission
+  #   restart: unless-stopped
+  #   networks: 
+  #     lan:
+  #       ipv4_address: 192.168.0.3
 
 networks:
   lan:
