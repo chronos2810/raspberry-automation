@@ -83,6 +83,7 @@ services:
     image: lscr.io/linuxserver/plex
     container_name: plex
     hostname: raspbian-plex
+    network_mode: host
     environment:
       # OS
       TZ: 'America/Argentina/Buenos_Aires'
@@ -97,9 +98,6 @@ services:
       - '${STORAGE}/tvseries:/tv'
       - '${STORAGE}/movies:/movies'
     restart: unless-stopped
-    networks: 
-      lan:
-        ipv4_address: 192.168.0.87
 
   tautulli:
     image: lscr.io/linuxserver/tautulli
@@ -118,13 +116,3 @@ services:
     depends_on:
       - plex
     restart: unless-stopped
-
-networks:
-  lan:
-    driver: macvlan
-    driver_opts:
-      parent: eth0
-    ipam:
-      config:
-        - subnet: '192.168.0.0/24'
-          gateway: '192.168.0.1'
