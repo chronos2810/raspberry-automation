@@ -83,6 +83,7 @@ services:
     image: lscr.io/linuxserver/plex
     container_name: plex
     hostname: raspbian-plex
+    network_mode: host
     environment:
       # OS
       TZ: 'America/Argentina/Buenos_Aires'
@@ -97,7 +98,6 @@ services:
       - '${STORAGE}/tvseries:/tv'
       - '${STORAGE}/movies:/movies'
     restart: unless-stopped
-    network_mode: host
 
   tautulli:
     image: lscr.io/linuxserver/tautulli
