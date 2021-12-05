@@ -93,3 +93,11 @@ export MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 ############
 
 echo; neofetch
+
+########
+# TMUX #
+########
+
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
