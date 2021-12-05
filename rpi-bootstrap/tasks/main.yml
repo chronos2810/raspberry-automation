@@ -27,8 +27,8 @@
 - import_tasks: timezone.yml
   tags: timezone
 
-- import_tasks: zsh.yml
-  tags: zsh
-
 - import_tasks: fzf.yml
   tags: fzf
+
+- import_tasks: zsh.yml
+  tags: zsh

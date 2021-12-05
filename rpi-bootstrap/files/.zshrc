@@ -101,3 +101,10 @@ echo; neofetch
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
+
+#######
+# FZF #
+#######
+
+# Requires FZF to be previously installed through the playbook
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
