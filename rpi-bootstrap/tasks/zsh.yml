@@ -1,0 +1,101 @@
+---
+# Tasks file for roles/zsh-setup requires ansible 2.9.22 or above
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Install packages Debian (with dependencies)
+  apt:
+    name: "{{ dependencies }}"
+    state: present
+    update_cache: yes
+  become: yes
+
+  loop: "{{ dependencies }}"
+  when:
+    - ansible_facts['os_family'] == "Debian"
+    - item not in ansible_facts.packages
+  ignore_errors: yes
+
+- name: Install packages Arch (with dependencies)
+  pacman:
+    name: "{{ dependencies }}"
+    state: present
+    update_cache: yes
+  become: yes
+
+  loop: "{{ dependencies }}"
+  when:
+    - ansible_facts['os_family'] == "Archlinux"
+    - item not in ansible_facts.packages
+  ignore_errors: yes
+
+- name: Install oh-my-zsh
+  git: 
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+    force: yes
+  become: no
+
+- name: Back up existing ~/.zshrc
+  shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.bak ; fi
+  become: no
+  changed_when: false
+
+- name: Back up existing ~/.zsh_aliases
+  shell: if [ -f ~/.zsh_aliases ]; then mv ~/.zsh_aliases ~/.zsh_aliases.bak ; fi
+  become: no
+  changed_when: false
+
+- name: Back up existing ~/.p10k.zsh
+  shell: if [ -f ~/.p10k.zsh ]; then mv ~/.p10k.zsh ~/.p10k.zsh.bak ; fi
+  become: no
+  changed_when: false
+
+- name: Copy my .zshrc
+  copy:
+    src: files/.zshrc
+    dest: ~/.zshrc
+  become: no
+
+- name: Copy my .zsh_aliases
+  copy:
+    src: files/.zsh_aliases
+    dest: ~/.zsh_aliases
+  become: no
+
+- name: Copy my .p10k.zsh
+  copy:
+    src: files/.p10k.zsh
+    dest: ~/.p10k.zsh
+  become: no
+
+- name: Install zsh-autosuggestions plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-autosuggestions"
+    force: yes
+  become: no
+
+- name: Install zsh-syntax-highlighting plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-syntax-highlighting"
+    force: yes
+  become: no
+
+- name: Install zsh-vim-mode plugin
+  git:
+    repo: https://github.com/softmoth/zsh-vim-mode.git
+    dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-vim-mode"
+    force: yes
+  become: no
+
+- name: Install powerlevel10k theme
+  git:
+    repo: https://gitee.com/romkatv/powerlevel10k.git
+    depth: "1"
+    dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/themes/powerlevel10k"
+    force: yes
+  become: no
+

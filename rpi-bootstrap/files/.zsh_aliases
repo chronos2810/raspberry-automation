@@ -1,0 +1,34 @@
+# General Usage
+alias conf="vim ~/.zshrc"
+alias epoch="date -d "
+alias ta="tree -a"
+alias tad="tree -aL 1"
+alias tw="timew"
+
+# kubectl
+alias k="kubectl"
+
+# gcloud
+alias g="gcloud"
+
+# Nvim
+alias v="nvim"
+
+# Docker
+alias dr="docker run --rm -it --entrypoint /bin/bash"
+
+# docker-compose
+alias dc="docker-compose"
+
+# terraform
+alias t="terraform"
+alias ttt="terraform init && echo && terraform fmt && echo && terraform validate"
+
+# hstr
+alias hh=hstr
+
+# Github
+alias g!="gd && gst && echo && ga -A && echo && gcmsg 'Checkpoint' && echo && gp"
+
+# Crypt
+alias calc="python3 cryptos-stop-loss-calculator/stoploss.py"

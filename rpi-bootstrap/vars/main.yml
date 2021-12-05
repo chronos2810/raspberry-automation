@@ -20,7 +20,7 @@ locale_options:
 
 apt:
   - git
-  - byobu
+  - tmux
   - curl
   - tree
   - silversearcher-ag
