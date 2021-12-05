@@ -21,6 +21,7 @@ locale_options:
 apt:
   - git
   - tmux
+  - zsh
   - curl
   - tree
   - silversearcher-ag
