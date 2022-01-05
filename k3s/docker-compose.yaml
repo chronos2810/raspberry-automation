@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    links:
+      - unbound
+    ports:
+      - '53:53/tcp'
+      - '53:53/udp'
+      - '67:67/udp'
+      - '80:80/tcp'
+      - '443:443/tcp'
+    environment:
+      ServerIP: ${SERVER_IP}
+      DNSMASQ_LISTENING: 'all'
+      TZ: 'America/Argentina/Buenos_Aires'
+      PUID: 1000
+      PGID: 1000
+      WEBPASSWORD: ${WEB_PASSWORD}
+      IPv6: 'false'
+    env_file:
+      - '.env'
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    networks:
+      pihole_net:
+        ipv4_address: 10.0.0.3
+
+networks:
+  pihole_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/29
