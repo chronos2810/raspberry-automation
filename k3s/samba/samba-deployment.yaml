@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: samba
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.26.0 (40646f47)
@@ -33,6 +34,17 @@ spec:
           envFrom:
             - configMapRef:
                 name: env
+          env:
+            - name: SMB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: samba-secret
+                  key: username
+            - name: SMB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: samba-secret
+                  key: password
           ports:
             - containerPort: 445
           resources: 
