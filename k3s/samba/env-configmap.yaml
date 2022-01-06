@@ -7,7 +7,6 @@ data:
   SMB_USER: foobar 
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   labels:
     io.kompose.service: samba-env
   name: env

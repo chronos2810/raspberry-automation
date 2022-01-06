@@ -4,7 +4,6 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
   labels:
     io.kompose.service: samba
   name: samba
@@ -19,7 +18,6 @@ spec:
       annotations:
         kompose.cmd: kompose convert
         kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
       labels:
         io.kompose.service: samba
     spec:
@@ -37,7 +35,10 @@ spec:
                 name: env
           ports:
             - containerPort: 445
-          resources: {}
+          resources: 
+            limits:
+              cpu: 100m # the CPU limit is define in milicore (m)
+              memory: 100Mi # the Memory is define in Mebibytes (Mi)
           stdin: true
           tty: true
       restartPolicy: Always
