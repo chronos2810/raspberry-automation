@@ -1,0 +1,5 @@
+---
+- hosts: all
+  remote_user: pi
+  roles:
+    - role: rpi-bootstrap
