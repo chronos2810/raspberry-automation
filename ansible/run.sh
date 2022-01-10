@@ -15,6 +15,6 @@ fi
 
 cd ~/raspberry-automation/ansible
 
-ansible all -i inventory/hosts.ini -m ping -u pi
+ansible all -i inventory/hosts.ini -m ping -u pi --ask-pass
 
 ansible-playbook playbook.yml -i inventory/hosts.ini --ask-pass

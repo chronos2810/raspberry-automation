@@ -38,3 +38,4 @@ apt:
   - dnsutils
   - smbclient
   - cifs-utils
+  - python3-pip
