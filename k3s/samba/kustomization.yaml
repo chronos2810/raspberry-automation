@@ -1,0 +1,9 @@
+# kustomization.yml
+namespace: samba
+
+resources:
+  - samba-namespace.yaml
+  - samba-configmap.yaml
+  - samba-deployment.yaml
+  - samba-service.yaml
+  - samba-loadbalancer.yaml

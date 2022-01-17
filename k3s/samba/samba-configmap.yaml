@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   SMB_CONTAINER_PATH: /media
-  SMB_LOCAL_PATH: /home/pirate/media
+  SMB_LOCAL_PATH: /home/pi/media
   SMB_NAME: Media (RW)
 kind: ConfigMap
 metadata:

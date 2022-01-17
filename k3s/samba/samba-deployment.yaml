@@ -33,7 +33,7 @@ spec:
             - "$(SMB_NAME);$(SMB_CONTAINER_PATH);yes;no;no;$(SMB_USER)"
           envFrom:
             - configMapRef:
-                name: env
+                name: samba-configmap
           env:
             - name: SMB_USER
               valueFrom:
