@@ -1,0 +1,8 @@
+# kustomization.yml
+namespace: kubernetes-dashboard
+
+resources:
+  - kd-namespace.yaml
+  - kd-service-account.yaml
+  - kd-rbac.yaml
+  - kd-loadbalancer.yaml
