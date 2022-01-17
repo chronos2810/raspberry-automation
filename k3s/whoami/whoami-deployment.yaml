@@ -24,3 +24,10 @@ spec:
           image: traefik/whoami
           ports:
             - containerPort: 80
+          resources:
+            limits:
+              memory: 30Mi
+              cpu: "30m"
+            requests:
+              memory: 30Mi
+              cpu: "30m"

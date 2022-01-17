@@ -1,0 +1,9 @@
+# kustomization.yml
+namespace: whoami
+
+resources:
+  - whoami-namespace.yaml
+  - whoami-deployment.yaml
+  - whoami-service.yaml
+  - whoami-loadbalancer.yaml
+  - whoami-ingress.yaml

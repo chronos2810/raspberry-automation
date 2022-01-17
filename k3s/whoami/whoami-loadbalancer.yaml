@@ -1,15 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: whoami
+  name: whoami-loadbalancer
   namespace: whoami
-
 spec:
-  ports:
-    - name: http
-      port: 80
-    - name: https
-      port: 443
   selector:
     app: traefiklabs
     task: whoami
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
