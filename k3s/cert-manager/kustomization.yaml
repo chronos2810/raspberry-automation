@@ -1,8 +1,5 @@
 # kustomization.yml
-namespace: kubernetes-dashboard
+namespace: cert-manager
 
 resources:
-  - kd-namespace.yaml
-  - kd-service-account.yaml
-  - kd-loadbalancer.yaml
-  - kd-ingress.yaml
+  - cert-issuer.yaml
