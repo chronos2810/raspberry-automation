@@ -4,8 +4,7 @@ metadata:
   name: whoami-ingress
   namespace: whoami
   annotations:
-    kubernetes.io/ingress.class: "internal-ingress-nginx"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: whoami.192.168.0.128.nip.io
@@ -17,4 +16,4 @@ spec:
           service:
             name: whoami 
             port:
-              number: 443
+              number: 80
