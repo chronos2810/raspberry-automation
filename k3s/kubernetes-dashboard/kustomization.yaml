@@ -6,3 +6,5 @@ resources:
   - kd-service-account.yaml
   - kd-rbac.yaml
   - kd-loadbalancer.yaml
+  - kd-service.yaml
+  - kd-ingress.yaml
