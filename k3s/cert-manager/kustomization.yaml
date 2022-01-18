@@ -2,4 +2,5 @@
 namespace: cert-manager
 
 resources:
-  - cert-issuer.yaml
+  - cert-issuer-stg.yaml
+  - cert-issuer-prd.yaml
