@@ -5,4 +5,4 @@ resources:
   - kd-namespace.yaml
   - kd-service-account.yaml
   - kd-loadbalancer.yaml
-  - kd-ingress.yaml
+  - kd-ingress-prd.yaml
