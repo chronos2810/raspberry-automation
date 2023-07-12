@@ -1,5 +1,5 @@
 ---
 - hosts: localhost
-  remote_user: pi
+  remote_user: raspbian-00
   roles:
     - rpi-bootstrap

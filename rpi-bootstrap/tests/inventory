@@ -1,2 +1,9 @@
-[local]
-control       ansible_connection=local ansible_python_interpreter=/usr/bin/python3
+# [local]
+# control       ansible_connection=local ansible_python_interpreter=/usr/bin/python3
+
+[group0]
+host0 ansible_host=192.168.1.8 ansible_user=raspbian-00 ansible_password=<your_password>
+# host3 ansible_host=192.168.0.3 ansible_user=your_username ansible_ssh_private_key_file=/path/to/your/private_key
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
