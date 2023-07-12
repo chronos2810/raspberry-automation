@@ -1,5 +1,17 @@
 #!/bin/bash
 
+: '
+***********************************************************************
+
+- What to change?
+
+- tests/inventory: Checks where this the playbook is going to run, remote over ssh or local?
+- vars/main.yml: General variables to use during the playbook run
+- files/resolv.conf and files/dhcpcd.conf: IP and DNS related configuration
+
+***********************************************************************
+'
+
 set -x
 
 sudo apt install ansible cowsay -y

@@ -9,5 +9,5 @@
   become: no
 
 - name: Install script
-  command: /home/pi/.fzf/install --key-bindings --no-completion --no-bash --no-fish --all
+  command: "/home/{{ ansible_user }}/.fzf/install --key-bindings --no-completion --no-bash --no-fish --all"
   become: yes
