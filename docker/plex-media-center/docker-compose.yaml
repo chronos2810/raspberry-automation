@@ -11,7 +11,7 @@ services:
       - 51413:51413/udp
     environment:
       # OS
-      TZ: 'America/Argentina/Buenos_Aires'
+      TZ: 'America/Santiago'
       PUID: 1000
       PGID: 1000
       # APP
@@ -27,7 +27,7 @@ services:
     hostname: raspbian-jackett
     environment:
       # OS
-      TZ: 'America/Argentina/Buenos_Aires'
+      TZ: 'America/Santiago'
       PUID: 1000
       PGID: 1000
       # APP
@@ -49,7 +49,7 @@ services:
       - 8989:8989/tcp
     environment:
       # OS
-      TZ: 'America/Argentina/Buenos_Aires'
+      TZ: 'America/Santiago'
       PUID: 1000
       PGID: 1000
     volumes:
@@ -68,7 +68,7 @@ services:
       - 7878:7878/tcp
     environment:
       # OS
-      TZ: 'America/Argentina/Buenos_Aires'
+      TZ: 'America/Santiago'
       PUID: 1000
       PGID: 1000
     volumes:
@@ -86,7 +86,7 @@ services:
     network_mode: host
     environment:
       # OS
-      TZ: 'America/Argentina/Buenos_Aires'
+      TZ: 'America/Santiago'
       PUID: 1000
       PGID: 1000
       VERSION: docker
@@ -107,7 +107,7 @@ services:
       - 8181:8181
     environment:
       # OS
-      TZ: 'America/Argentina/Buenos_Aires'
+      TZ: 'America/Santiago'
       PUID: 1000
       PGID: 1000
     volumes:
