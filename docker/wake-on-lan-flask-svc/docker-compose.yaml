@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  wake-on-lan-flask-svc:
+    build:           # Build the container
+      context: ./src
+    ports:
+      - "7777:5000"  # Map port 5000 from the container to port 7777 on the host
+    restart: always  # Restart the container if it stops for any reason
