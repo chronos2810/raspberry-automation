@@ -12,6 +12,7 @@ services:
     ports:
       - 445:445
     volumes:
-      - '/usr/share/zoneinfo/America/Argentina/Buenos_Aires:/etc/localtime'
+      # - '/usr/share/zoneinfo/America/Argentina/Buenos_Aires:/etc/localtime'
+      - '/usr/share/zoneinfo/America/Santiago:/etc/localtime'
       - '${SMB_LOCAL_PATH}:${SMB_CONTAINER_PATH}'
     restart: always
