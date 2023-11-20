@@ -1,11 +1,18 @@
 ---
 # Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
+- name: Get current shell for a specific user
+  shell: "getent passwd {{ ansible_user }} | cut -d: -f7"
+  register: current_shell
+  changed_when: false
+
 - name: Install oh-my-zsh
   git: 
     repo: https://github.com/robbyrussell/oh-my-zsh
     dest: ~/.oh-my-zsh
     force: yes
   become: false
+  when: current_shell.stdout != '/bin/zsh'
+
 
 - name: Back up existing ~/.zshrc
   shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.bak ; fi
@@ -35,6 +42,7 @@
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-autosuggestions"
     force: yes
   become: false
+  when: current_shell.stdout != '/bin/zsh'
 
 - name: Install zsh-syntax-highlighting plugin
   git:
@@ -42,6 +50,7 @@
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-syntax-highlighting"
     force: yes
   become: false
+  when: current_shell.stdout != '/bin/zsh'
 
 - name: Install zsh-vim-mode plugin
   git:
@@ -49,9 +58,11 @@
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-vim-mode"
     force: yes
   become: false
+  when: current_shell.stdout != '/bin/zsh'
 
 - name: Set Zsh as the default shell for a specific user
   user:
     name: "{{ ansible_user }}"
     shell: /bin/zsh
   become: true
+  when: current_shell.stdout != '/bin/zsh'
