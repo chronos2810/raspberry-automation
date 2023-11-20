@@ -9,6 +9,13 @@
 - vars/main.yml: General variables to use during the playbook run
 - files/resolv.conf and files/dhcpcd.conf: IP and DNS related configuration
 
+    ~ One-liner run ~
+
+RUSER="raspbian-00"
+RHOST=192.168.1.43
+aplaybook -i "${RHOST}," -u "${RUSER}" --ask-pass ~/coding-repos/raspberry-automation/rpi-bootstrap/tests/playbook.yml 
+	# Does this needs "--ask-become-pass"?
+
 ***********************************************************************
 '
 

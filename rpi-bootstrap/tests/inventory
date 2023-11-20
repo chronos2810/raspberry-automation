@@ -1,8 +1,0 @@
-# [local]
-# control       ansible_connection=local ansible_python_interpreter=/usr/bin/python3
-
-# [group0]
-# host0 ansible_host={{ static_rpi_ip_address }} ansible_user=raspbian-00 ansible_password=""
-
-# [all:vars]
-# ansible_python_interpreter=/usr/bin/python3
