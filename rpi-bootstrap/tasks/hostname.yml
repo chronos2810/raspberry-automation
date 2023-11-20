@@ -6,12 +6,12 @@
   register: current_hostname
 
 - name: Set hostname
-  become: yes
+  become: true
   command: hostnamectl set-hostname "{{ hostname }}"
   when: current_hostname.stdout != hostname
 
 - name: Set hostname in /etc/hosts
-  become: yes
+  become: true
   lineinfile:
     path: /etc/hosts
     regexp: '127.0.1.1.*raspberrypi'

@@ -6,8 +6,8 @@
     dest: ~/.fzf
     depth: 1
     force: yes
-  become: no
+  become: false
 
 - name: Install script
   command: "/home/{{ ansible_user }}/.fzf/install --key-bindings --no-completion --no-bash --no-fish --all"
-  become: yes
+  become: true

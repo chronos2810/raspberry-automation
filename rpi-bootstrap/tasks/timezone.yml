@@ -6,6 +6,6 @@
   register: current_timezone
 
 - name: Set timezone
-  become: yes
+  become: true
   command: "timedatectl set-timezone {{ timezone }}"
   when: current_timezone.stdout != timezone

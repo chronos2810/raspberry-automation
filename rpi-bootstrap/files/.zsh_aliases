@@ -1,9 +1,12 @@
 # General Usage
-alias conf="vim ~/.zshrc"
+alias zshconf="code ~/.zshrc"
+alias sshconf="code ~/.ssh/config"
 alias epoch="date -d "
 alias ta="tree -a"
 alias tad="tree -aL 1"
 alias tw="timew"
+(( $+commands[fd] )) || alias fd='find . -type d -name'
+alias ff='find . -type f -name'
 
 # kubectl
 alias k="kubectl"
@@ -24,11 +27,32 @@ alias dc="docker-compose"
 alias t="terraform"
 alias ttt="terraform init && echo && terraform fmt && echo && terraform validate"
 
+# pulumi
+alias pp="pulumi preview -s"
+
 # hstr
-alias hh=hstr
+alias hh="hstr"
 
 # Github
 alias g!="gd && gst && echo && ga -A && echo && gcmsg 'Checkpoint' && echo && gp"
 
-# Crypt
-alias calc="python3 cryptos-stop-loss-calculator/stoploss.py"
+# Filesystem navigation
+alias dv="dirs -v"
+alias pd="pushd"
+alias po="popd"
+
+# Tmuxinator
+alias tx="tmuxinator"
+
+# Command line head / tail shortcuts
+alias -g F='| fzf'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g L="| less"
+alias -g M="| more"
+alias -g LL="2>&1 | less"
+alias -g CA="2>&1 | cat -A"
+alias -g NE="2> /dev/null"
+alias -g NUL="> /dev/null 2>&1"
+alias -g P="2>&1| pygmentize -l pytb"

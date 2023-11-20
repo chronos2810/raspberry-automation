@@ -1,7 +1,7 @@
 ---
 # Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
 - name: Configure option values in /etc/locale.gen file.
-  become: yes
+  become: true
   replace:
     path: /etc/locale.gen
     backup: yes
@@ -11,11 +11,11 @@
   register: locale_gen
 
 - name: Generate Locale
-  become: yes
+  become: true
   command: locale-gen {{ locale }}
   when: locale_gen is changed
 
 - name: Set Locale
-  become: yes
+  become: true
   command: update-locale LC_ALL={{ locale }} LANG={{ locale }}
   when: locale_gen is change

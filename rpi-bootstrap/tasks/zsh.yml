@@ -5,47 +5,47 @@
     repo: https://github.com/robbyrussell/oh-my-zsh
     dest: ~/.oh-my-zsh
     force: yes
-  become: no
+  become: false
 
 - name: Back up existing ~/.zshrc
   shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.bak ; fi
-  become: no
+  become: false
   changed_when: false
 
 - name: Back up existing ~/.zsh_aliases
   shell: if [ -f ~/.zsh_aliases ]; then mv ~/.zsh_aliases ~/.zsh_aliases.bak ; fi
-  become: no
+  become: false
   changed_when: false
 
 - name: Copy my .zshrc
   copy:
     src: files/.zshrc
     dest: ~/.zshrc
-  become: no
+  become: false
 
 - name: Copy my .zsh_aliases
   copy:
     src: files/.zsh_aliases
     dest: ~/.zsh_aliases
-  become: no
+  become: false
 
 - name: Install zsh-autosuggestions plugin
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-autosuggestions"
     force: yes
-  become: no
+  become: false
 
 - name: Install zsh-syntax-highlighting plugin
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-syntax-highlighting"
     force: yes
-  become: no
+  become: false
 
 - name: Install zsh-vim-mode plugin
   git:
     repo: https://github.com/softmoth/zsh-vim-mode.git
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-vim-mode"
     force: yes
-  become: no
+  become: false

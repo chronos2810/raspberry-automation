@@ -7,7 +7,8 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="random"
 #ZSH_THEME="af-magic"
-ZSH_THEME="half-life"
+#ZSH_THEME="half-life"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -19,17 +20,8 @@ ZSH_THEME="half-life"
 # Comment this out to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
-# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -50,16 +42,16 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-vim-mode
-  )
+  zsh-interactive-cd
+  command-not-found
+  autojump
+  copypath
+  alias-finder
+  gcloud
+)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh_aliases
-
-# disable zsh autocorrect
-unsetopt correct_all
-
-# zsh and rake https://robots.thoughtbot.com/how-to-use-arguments-in-a-rake-task
-unsetopt nomatch
 
 # use local aliases if exists
 if [ -f "$HOME/.zsh_local_aliases" ]
@@ -73,8 +65,18 @@ then
   source ~/.zsh_local_config
 fi
 
-# Custom Variables
-export ANS="$HOME/documentation/General_Platforms/Cloud/Ansible/linux-config"
+# ***** Custom Variables *****
+
+# Set EDITOR
+export EDITOR="vim"
+
+# Alias Finder
+ZSH_ALIAS_FINDER_AUTOMATIC=true
+
+# Go
+export PATH=$PATH:"${HOME}/go/bin"
+export GOPATH="${HOME}/go_projects"
+export GOROOT="/usr/bin/go"
 
 ################
 # ZSH VIM MODE #
@@ -88,23 +90,81 @@ export MODE_CURSOR_SEARCH="#ff00ff steady underline"
 export MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
 export MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 
-############
-# Neofetch #
-############
-
-echo; neofetch
-
 ########
-# TMUX #
+# p10k #
 ########
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-#######
-# FZF #
-#######
+########
+# Tmux #
+########
 
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux
+# fi
+
+#########
+# Byobu #
+#########
+
+# if command -v byobu &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec byobu
+# fi
+
+####################
+# Code completions #
+####################
+
+# *** FZF ***
 # Requires FZF to be previously installed through the playbook
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# *** Tmuxinator ***
+# sudo wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O /usr/local/share/zsh/site-functions/_tmuxinator
+
+# *** Pyenv ***
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+####################
+# Custom Functions #
+####################
+
+function calculate_asset_purchase() {
+    account_size=$1 # Example: 1000
+    asset_price=$2  # Example: 45.04
+    stop_loss=$3    # Example: 1.09 (The SL has to be a %percentage in the price drop)
+    risk=$4         # Example: 1 (The percentage of the account to risk)
+
+    # Using bc (a command line calculator) to perform the floating point division
+  	account_1_percent=$(echo "scale=2; ${account_size} * 0.01" | bc)
+  	account_2_percent=$(echo "scale=2; ${account_size} * 0.02" | bc)
+  	account_3_percent=$(echo "scale=2; ${account_size} * 0.03" | bc)
+
+    # Calculate the drop in asset price when stop loss is triggered
+    drop_in_price=$(echo "$asset_price * ($stop_loss / 100)" | bc -l)
+
+    # Calculate total amount willing to lose from the account
+    total_loss=$(echo "$account_size * ($risk / 100)" | bc -l)
+
+    # Calculate number of assets to buy
+    number_of_assets=$(echo "$total_loss / $drop_in_price" | bc -l)
+
+    # Calculate the total cost of the buy
+    total_cost=$(echo "$number_of_assets * $asset_price" | bc -l)
+
+    # Print values
+    echo "\n- Account Balance: ${1}"
+    echo "- Account 1%: ${account_1_percent}"
+    echo "- Account 2%: ${account_2_percent}"
+    echo "- Account 3%: ${account_3_percent}\n"
+
+    printf "- Drop in asset price when the stop loss is triggered: %.2f USD\n" ${drop_in_price}
+    printf "- Total amount willing to lose from the account: %.2f USD\n" ${total_loss}
+
+    printf "\n- Number of assets to buy: %.2f\n" ${number_of_assets}
+    printf "- Estimated total cost of the buy: %.2f USD\n" ${total_cost}
+}

@@ -5,7 +5,7 @@
     manager: auto
 
 - name: Upgrade apt packages
-  become: yes
+  become: true
   apt:
     upgrade: dist
 
@@ -14,4 +14,4 @@
     name: "{{ apt }}"
     state: latest
     update_cache: yes
-  become: yes
+  become: true

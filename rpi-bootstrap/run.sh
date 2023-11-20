@@ -3,7 +3,7 @@
 : '
 ***********************************************************************
 
-- What to change?
+    ~ What to change? ~
 
 - tests/inventory: Checks where this the playbook is going to run, remote over ssh or local?
 - vars/main.yml: General variables to use during the playbook run

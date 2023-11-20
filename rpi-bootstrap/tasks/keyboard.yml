@@ -1,13 +1,13 @@
 ---
 # Tasks file for roles/rpi-bootstrap requires ansible 2.9.22 or above
 - name: Set keyboard model and layout
-  become: yes
+  become: true
   template:
     src: files/keyboard
     dest: /etc/default/keyboard
   register: default_keyboard
 
 - name: dpkg-reconfigure keyboard-configuration
-  become: yes
+  become: true
   command: dpkg-reconfigure -f noninteractive keyboard-configuration
   when: default_keyboard is changed

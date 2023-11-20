@@ -34,7 +34,7 @@
   when: docker_command_result.rc == 1
 
 - name: Install docker-compose
-  become: yes
+  become: true
   pip:
     name: docker-compose
     state: latest
@@ -53,7 +53,7 @@
   when: package_check is succeeded
 
 - name: Ensure docker users are added to the docker group
-  become: yes
+  become: true
   user:
     name: "{{ ansible_user }}"
     groups:

@@ -9,7 +9,7 @@
     mode: '0664'
     force: yes
     backup: yes
-  become: yes
+  become: true
 
 - name: Copy /etc/resolv.conf
   copy:
@@ -21,8 +21,8 @@
     force: yes
     backup: yes
   notify: "reboot required"
-  become: yes
+  become: true
 
 - name: Immutable /etc/resolv.conf
   command: chattr +i /etc/resolv.conf
-  become: yes
+  become: true

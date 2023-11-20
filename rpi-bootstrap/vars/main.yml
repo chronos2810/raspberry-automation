@@ -1,6 +1,10 @@
 ---
 # vars file for roles/rpi-bootstrap
-hostname: binary-byte
+hostname: "binary-byte"
+
+static_rpi_ip_address: "192.168.1.43"
+main_gateway_dns: "192.168.1.3"
+secondary_dns: "8.8.8.8"
 
 keyboard: "pc105"
 keyboard_layout: "us"
