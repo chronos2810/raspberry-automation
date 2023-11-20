@@ -6,4 +6,5 @@ services:
       context: ./src
     ports:
       - "7777:5000"  # Map port 5000 from the container to port 7777 on the host
+      # - "0.0.0.0:7777:5000"  # Map port 5000 from the container to port 7777 on the host
     restart: always  # Restart the container if it stops for any reason
