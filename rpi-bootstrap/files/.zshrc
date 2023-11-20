@@ -7,8 +7,8 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="random"
 #ZSH_THEME="af-magic"
-#ZSH_THEME="half-life"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="half-life"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -120,14 +120,6 @@ export MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 # *** FZF ***
 # Requires FZF to be previously installed through the playbook
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# *** Tmuxinator ***
-# sudo wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O /usr/local/share/zsh/site-functions/_tmuxinator
-
-# *** Pyenv ***
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 ####################
 # Custom Functions #

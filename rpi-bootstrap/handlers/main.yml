@@ -2,7 +2,7 @@
 # handlers file for roles/rpi-bootstrap
 - name: reboot raspberry pi
   listen: "reboot required"
-  become: yes
+  become: true
   reboot:
 
 - name: handler

@@ -49,3 +49,9 @@
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', True) }}/plugins/zsh-vim-mode"
     force: yes
   become: false
+
+- name: Set Zsh as the default shell for a specific user
+  user:
+    name: "{{ ansible_user }}"
+    shell: /bin/zsh
+  become: true
