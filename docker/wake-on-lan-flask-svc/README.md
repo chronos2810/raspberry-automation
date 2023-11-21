@@ -63,5 +63,6 @@ ssh angus@192.168.1.33 powershell
 
 ```bash
 # Copy to raspberry:
-rsync -avz --delete ../../docker raspbian-00@192.168.1.43:docker
+cd docker/wake-on-lan-flask-svc
+rsync -av --delete --progress ../../docker raspbian-00@192.168.1.43:docker
 ```
