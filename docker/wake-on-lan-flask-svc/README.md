@@ -33,7 +33,7 @@ if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyCon
 ssh-keygen -t rsa -f ~/.ssh/win-desktop
 
 # Add the key to the ssh agent
-eval $(ssh-agent)
+eval $(ssh-agent -s)
 ssh-add ~/.ssh/win-desktop
 
 # Delete the key (Since it's now added to the ssh agent)
@@ -60,3 +60,8 @@ ssh angus@192.168.1.33 powershell
 ```
 
 # Docker
+
+```bash
+# Copy to raspberry:
+rsync -avz --delete ../../docker raspbian-00@192.168.1.43:docker
+```
