@@ -17,6 +17,7 @@ config.read('config.ini')
 
 WIN_HOST = config['DEFAULT']['WIN_HOST']
 WIN_USER = config['DEFAULT']['WIN_USER']
+_COMMAND = config['DEFAULT']['_COMMAND']
 
 # **************
 #  Debug
@@ -28,7 +29,7 @@ WIN_USER = config['DEFAULT']['WIN_USER']
 #  Functions
 # **************
 
-def run_ssh_command(host, username, password, command):
+def run_ssh_command(host, username, command):
     try:
         # Using subprocess to run the SSH command
         result = subprocess.run(
@@ -38,7 +39,6 @@ def run_ssh_command(host, username, password, command):
                 '-o', 'StrictHostKeyChecking=no',  # Ignore host key checking (for demo purposes, not recommended in production)
                 command
             ],
-            input=password.encode(),  # Pass password through stdin
             text=True,  # Return output as text
             capture_output=True  # Capture output for later use if needed
         )
@@ -49,14 +49,7 @@ def run_ssh_command(host, username, password, command):
     except Exception as e:
         print(f"Error running SSH command: {str(e)}", file=sys.stderr)
 
-# if __name__ == "__main__":
-#     # Replace these values with your actual SSH details
-#     host = "your_remote_host"
-#     username = "your_ssh_username"
-#     password = "your_ssh_password"
-#     command = "echo Hello from remote host!"
-
-#     run_ssh_command(host, username, password, command)
+run_ssh_command(WIN_HOST, WIN_USER, _COMMAND)
 
 # **************
 #  Flask
