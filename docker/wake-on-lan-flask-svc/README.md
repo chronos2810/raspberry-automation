@@ -110,3 +110,12 @@ EOT
 # 3. Create the container and test it with:
 docker-compose up -d --build
 ```
+
+```
+# 1. Install tools psexec, psshutdown by copying the executables to C:\Windows\System32\
+#       https://learn.microsoft.com/es-es/sysinternals/downloads/psexec
+#       https://learn.microsoft.com/es-es/sysinternals/downloads/psshutdown
+
+# 2. Run commands with psexec
+psexec -s -i 1 \\%COMPUTERNAME% psshutdown -l -t 0
+```

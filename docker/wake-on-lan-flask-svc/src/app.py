@@ -1,3 +1,15 @@
+
+"""
+# External
+C:\Windows\System32\DisplaySwitch.exe /external
+start "Steam" /b "steam://open/bigpicture"
+
+# Internal
+C:\Windows\System32\DisplaySwitch.exe /internal
+taskkill.exe /F /IM Steam.exe /T
+rundll32.exe user32.dll,LockWorkStation
+"""
+
 # ---------------------------------------------------------------------
 #  Imports 
 # ---------------------------------------------------------------------
@@ -84,19 +96,23 @@ with open(ssh_config_path, "w") as f:
 
 app = Flask(__name__)
 
-@app.route('/run')
-def run():
-    # os.system('cmd /k 'C:\Windows\System32\DisplaySwitch.exe /external'')
-    # os.system('cmd /k 'C:\Program Files (x86)\Steam\Steam.exe -gamepadui'')
-    # os.system('start 'Steam' /b 'steam://open/bigpicture'')
-    # os.system('env')
-    return 'test'
+@app.route('/tv')
+def tv():
+    # External display with no actions
+    run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% DisplaySwitch /external')
 
-@app.route('/stop')
-def shutdown():
-    # os.system('cmd /k 'C:\Windows\System32\DisplaySwitch.exe /internal'')
-    # os.system('cmd /k 'taskkill.exe /F /IM Steam.exe /T'')
-    return 'stop'
+@app.route('/steam')
+def steam():
+    # External display + open Steam
+    run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% DisplaySwitch /external')
+    run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% CMD /C START steam://open/bigpicture')
+
+@app.route('/lock')
+def lock():
+    # Internal display + close Steam + lock screen
+    run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% DisplaySwitch /internal')
+    run_ssh_command(WIN_HOST, WIN_USER, 'taskkill.exe /F /IM Steam.exe /T')
+    run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% psshutdown -l -t 0')
 
 # ---------------------------------------------------------------------
 #  Main
