@@ -100,12 +100,14 @@ app = Flask(__name__)
 def tv():
     # External display with no actions
     run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% DisplaySwitch /external')
+    return "Tv!"
 
 @app.route('/steam')
 def steam():
     # External display + open Steam
     run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% DisplaySwitch /external')
     run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% CMD /C START steam://open/bigpicture')
+    return 'Steam!'
 
 @app.route('/lock')
 def lock():
@@ -113,6 +115,7 @@ def lock():
     run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% DisplaySwitch /internal')
     run_ssh_command(WIN_HOST, WIN_USER, 'taskkill.exe /F /IM Steam.exe /T')
     run_ssh_command(WIN_HOST, WIN_USER, 'psexec -s -i 1 \\\\%COMPUTERNAME% psshutdown -l -t 0')
+    return "Lock!"
 
 # ---------------------------------------------------------------------
 #  Main
