@@ -92,9 +92,9 @@ ssh-add ~/.ssh/win-desktop
 cat << EOT >> $HOME/.ssh/config
 
 # WIN SSH Config
-Host 192.168.1.33
+Host <WIN_IP>
   User <WIN_USERNAME> # Example: foobar
-  Hostname 192.168.1.33
+  Hostname <WIN_IP>
   IdentityFile ~/.ssh/win-desktop
   ForwardAgent yes
 EOT
